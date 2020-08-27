@@ -5,6 +5,7 @@ import Welcome from './components/welcome/Welcome';
 import Clock from './components/clock/Clock';
 import Contact from './components/contact/Contact';
 import Navigation from './components/navigation/Navigation';
+import Error from './components/error/Error'
 
 
 function App() {
@@ -19,11 +20,13 @@ function App() {
      path="/" exact 
      render={(props) => <Welcome {...props} name="Darius" />} 
      />
-     {/* <Route path= "welcome/:name" component={Name} /> */}
+     <Route exact 
+     path="/welcome/:name" 
+     render={(props) => <Welcome {...props} name={props.match.params.name} />} />
      <Route exact path="/clock" exact component={Clock}/>
      <Route exact path="/contact" exact component={Contact}/>
-     <Route path="/" render={() => <h1>404 No Match Found</h1>} />
-    </Switch>
+     <Route exact component={Error} />
+     </Switch>
     </div>
     </BrowserRouter>
   );
